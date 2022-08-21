@@ -1,7 +1,7 @@
-package com.miaplicacion.primerproyecto.service;
+package com.miaplicacion.primerproyecto.Service;
 
-import com.miaplicacion.primerproyecto.model.Persona;
-import com.miaplicacion.primerproyecto.repository.PersonaRepository;
+import com.miaplicacion.primerproyecto.Entity.Persona;
+import com.miaplicacion.primerproyecto.Repository.PersonaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,4 +33,8 @@ public class PersonaService implements IPersonaService {
         return persona;
     }
     
+    @Override
+     public Persona updatePersona(Persona persona){
+        return persoRepo.save(persona);
+    }
 }

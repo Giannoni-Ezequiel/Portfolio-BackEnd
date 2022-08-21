@@ -1,16 +1,20 @@
 package com.miaplicacion.primerproyecto.Controller;
 
-import com.miaplicacion.primerproyecto.model.Persona;
-import com.miaplicacion.primerproyecto.service.IPersonaService;
+import com.miaplicacion.primerproyecto.Entity.Persona;
+import com.miaplicacion.primerproyecto.Service.IPersonaService;
 //import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class Controller {
+public class PersonaController {
     
     /*List<Persona> listaPersonas = new ArrayList();
     
@@ -37,7 +41,7 @@ public class Controller {
     private IPersonaService persoServ;
     
     
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/personas/crear")
     public void agregarPersona (@RequestBody Persona pers) {
         //listaPersonas.add(pers);
@@ -45,21 +49,27 @@ public class Controller {
        
                 }
     
-    @GetMapping ("/personas/ver/personas")
+    @GetMapping ("/ver/personas")
     @ResponseBody
     public List<Persona> verPersonas (){
         //return listaPersonas;
         return persoServ.verPersonas();
     }
-    
-    @DeleteMapping ("/personas/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping ("/delete/{id}")
     public void borrarPersona (@PathVariable Long id) {
         persoServ.borrarPersona(id);
     }
     
-    @GetMapping("/personas/traer/perfil")
+    @GetMapping("/traer/perfil")
     public Persona buscarPersona(){
         return persoServ.buscarPersona((long)1);
+    }
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update")
+    public ResponseEntity<Persona> updatePersona(@RequestBody Persona persona){
+        Persona  updatePersona = persoServ.updatePersona(persona);
+        return new ResponseEntity<>(updatePersona, HttpStatus.OK);
     }
 }
 
