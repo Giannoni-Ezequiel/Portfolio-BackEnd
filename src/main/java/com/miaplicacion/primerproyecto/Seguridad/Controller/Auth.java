@@ -25,7 +25,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "https://bkdprueba95.herokuapp.com/")
+@CrossOrigin(origins = "*")
 @RequestMapping("/auth")
 public class Auth {
 
