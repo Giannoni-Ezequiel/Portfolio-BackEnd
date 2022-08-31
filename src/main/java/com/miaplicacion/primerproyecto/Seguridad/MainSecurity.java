@@ -16,9 +16,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "*")
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -61,9 +61,6 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception 
-    {
     /*    http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
@@ -74,11 +71,13 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     } */
-        
-        http.cors().and().csrf().disable()
+        @Override
+    public void configure(HttpSecurity httpSecurity) throws Exception{
+        httpSecurity.cors();
+        httpSecurity.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .anyRequest().authenticated().and().exceptionHandling().authenticationEntryPoint( jwtEntryPoint )
                 .and().sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
-        http.addFilterBefore( jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class );}
+        httpSecurity.addFilterBefore( jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class );}
 }
