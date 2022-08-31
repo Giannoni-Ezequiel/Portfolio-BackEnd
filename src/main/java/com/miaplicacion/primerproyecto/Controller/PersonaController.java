@@ -63,10 +63,10 @@ public class PersonaController {
         persoServ.borrarPersona(id);
     }
     
-    @GetMapping("/traer/perfil")
+    /*@GetMapping("/traer/perfil")
     public Persona buscarPersona(){
         return persoServ.buscarPersona((long)1);
-    }
+    }*/
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Persona> updatePersona(@RequestBody Persona persona){
