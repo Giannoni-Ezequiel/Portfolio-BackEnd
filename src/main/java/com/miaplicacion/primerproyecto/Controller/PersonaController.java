@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://ezequiel-giannoni.web.app")
 @RestController
 @RequestMapping("/persona")
 public class PersonaController {
@@ -44,14 +44,14 @@ public class PersonaController {
     
     
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping ("/personas/crear")
+    @PostMapping ("/crear")
     public void agregarPersona (@RequestBody Persona pers) {
         //listaPersonas.add(pers);
         persoServ.crearPersona(pers);
        
                 }
     
-    @GetMapping ("/ver/personas")
+    @GetMapping ("/ver")
     @ResponseBody
     public List<Persona> verPersonas (){
         //return listaPersonas;
