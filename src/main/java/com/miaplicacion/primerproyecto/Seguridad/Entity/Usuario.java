@@ -4,8 +4,11 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+//import lombok.Data;
 
 @Entity
+@Table(name="usuario")
+//@Data //genera Get Y Setters
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
