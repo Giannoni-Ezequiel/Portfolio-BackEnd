@@ -27,8 +27,7 @@ public class Provider
     public String generateToken(Authentication authentication)
     {
         UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
-        List<String> roles = 
-        usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+        List<String> roles = usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
                 .claim("roles", roles)
                 .setIssuedAt(new Date())
