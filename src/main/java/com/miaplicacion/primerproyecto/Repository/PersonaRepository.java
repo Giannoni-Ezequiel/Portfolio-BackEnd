@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Long>
 {
+    //List<Persona> findAll();
+    Persona save(Persona persona);
     void deletePersonaById(Long id);
     Persona findPersonaById(Long id);
 }
