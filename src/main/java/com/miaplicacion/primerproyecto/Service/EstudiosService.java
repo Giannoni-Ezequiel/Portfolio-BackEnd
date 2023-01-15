@@ -1,5 +1,6 @@
 package com.miaplicacion.primerproyecto.Service;
 
+import com.miaplicacion.primerproyecto.Entity.DTO.EstudioDTO;
 import com.miaplicacion.primerproyecto.Entity.Estudios;
 import com.miaplicacion.primerproyecto.Repository.EstudiosRepository;
 import java.util.List;
@@ -24,13 +25,13 @@ public class EstudiosService
         return this.estudiosRepository.findEstudiosById(id);
     }
     
-    /*public void add(EstudioDTO estudio){
+    public void add(EstudioDTO estudio){
         this.estudiosRepository.save(estudio.toEstudioEntity());
     }
     
     public Estudios edit(EstudioDTO estudio){
         return this.estudiosRepository.save(estudio.toEstudioEntity());
-    }*/
+    }
     
     public Estudios delete(Long id){
         this.estudiosRepository.deleteById(id);
