@@ -1,5 +1,6 @@
 package com.miaplicacion.primerproyecto.Service;
 
+import com.miaplicacion.primerproyecto.Entity.DTO.HySDTO;
 import com.miaplicacion.primerproyecto.Entity.HyS;
 import com.miaplicacion.primerproyecto.Repository.HySRepository;
 import java.util.List;
@@ -24,13 +25,13 @@ public class HySService
         return this.hysRepository.findHySById(id);
     }
     
-    /*public void add(HySDTO hys){
+    public void add(HySDTO hys){
         this.hysRepository.save(hys.toHySEntity());
     }
     
     public HyS edit(HySDTO hys){
         return this.hysRepository.save(hys.toHySEntity());
-    }*/
+    }
     
     public HyS delete(Long id){
         this.hysRepository.deleteById(id);

@@ -1,5 +1,6 @@
 package com.miaplicacion.primerproyecto.Service;
 
+import com.miaplicacion.primerproyecto.Entity.DTO.ProyectoDTO;
 import com.miaplicacion.primerproyecto.Entity.Proyectos;
 import com.miaplicacion.primerproyecto.Repository.ProyectosRepository;
 import java.util.List;
@@ -24,13 +25,13 @@ public class ProyectosService
         return this.proyectoRepository.findProyectoById(id);
     }
     
-    /*public void add(ProyectosDTO proyecto){
-        this.proyectoRepository.save(proyecto.toProyectosEntity());
+    public void add(ProyectoDTO proyecto){
+        this.proyectoRepository.save(proyecto.toProyectoEntity());
     }
     
-    public Proyectos edit(HySDTO proyecto){
-        return this.proyectoRepository.save(proyecto.toProyectosEntity());
-    }*/
+    public Proyectos edit(ProyectoDTO proyecto){
+        return this.proyectoRepository.save(proyecto.toProyectoEntity());
+    }
     
     public Proyectos delete(Long id){
         this.proyectoRepository.deleteById(id);

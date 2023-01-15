@@ -1,5 +1,6 @@
 package com.miaplicacion.primerproyecto.Service;
 
+import com.miaplicacion.primerproyecto.Entity.DTO.ExperienciaDTO;
 import com.miaplicacion.primerproyecto.Entity.Experiencia;
 import com.miaplicacion.primerproyecto.Repository.ExperienciaRepository;
 import java.util.List;
@@ -24,13 +25,13 @@ public class ExperienciaService
         return this.experienciaRepository.findExperienciaById(id);
     }
     
-    /*public void add(ExperienciaDTO experiencia){
+    public void add(ExperienciaDTO experiencia){
         this.experienciaRepository.save(experiencia.toExperienciaEntity());
     }
     
     public Experiencia edit(ExperienciaDTO experiencia){
         return this.experienciaRepository.save(experiencia.toExperienciaEntity());
-    }*/
+    }
     
     public Experiencia delete(Long id){
         this.experienciaRepository.deleteById(id);
