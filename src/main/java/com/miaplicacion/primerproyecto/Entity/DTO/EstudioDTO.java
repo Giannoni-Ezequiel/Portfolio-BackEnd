@@ -4,25 +4,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.miaplicacion.primerproyecto.Entity.Estudios;
 import com.miaplicacion.primerproyecto.Entity.Persona;
 import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 public class EstudioDTO {
-    
-    @JsonProperty("descripcion")
-    private String descripcion;
-    @JsonProperty("fecha_fin")
-    private Date fecha_fin;
-    @JsonProperty("fecha_inicio")
-    private Date fecha_inicio;
-    @JsonProperty("img")
-    private String img;
+
     @JsonProperty("nombre")
     private String nombre;
     @JsonProperty("titulo")
     private String titulo;
+    @JsonProperty("fecha_inicio")
+    private String fecha_inicio;
+    @JsonProperty("fecha_fin")
+    private String fecha_fin;
+    @JsonProperty("img")
+    private String img;
+    @JsonProperty("descripcion")
+    private String descripcion;
+
     @JsonProperty("persona")
     private Persona persona;
     

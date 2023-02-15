@@ -14,21 +14,28 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+
 //@CrossOrigin(origins = "https://proyectoangulareg.web.app/")
-@RequestMapping("experiencia")
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/experiencia")
 public class ExperienciaController 
 {
-    private final ExperienciaService experienciaService;
     @Autowired
-    public ExperienciaController(ExperienciaService experienciaService){
-        this.experienciaService = experienciaService;
-    }
+    ExperienciaService experienciaService;
     
-    @GetMapping("")
+    @GetMapping("/list")
     public ResponseEntity<List<Experiencia>> list(){
-        List<Experiencia> list = this.experienciaService.list();
+        List<Experiencia> list = experienciaService.list();
         return new ResponseEntity(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Experiencia> getById(@PathVariable("id") int id){
+        if(!experienciaService.existsById(id))
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        Experiencia experiencia = experienciaService.getOne(id).get();
+        return new ResponseEntity(experiencia, HttpStatus.OK);
     }
     
     @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -36,13 +43,13 @@ public class ExperienciaController
         if(StringUtils.isBlank(experiencia.getNombreEmpresa()))
         return new ResponseEntity(new Mensaje("El nombre es obligatorio"),
                 HttpStatus.BAD_REQUEST);
-        if(this.experienciaService.existsBynombreEmpresa(experiencia.getNombreEmpresa()))
+        if(experienciaService.existsBynombreEmpresa(experiencia.getNombreEmpresa()))
             return new ResponseEntity(new Mensaje("Esa experiencia existe"),
                     HttpStatus.BAD_REQUEST);
         Experiencia exp = new Experiencia(experiencia.getCargo()
                 ,experiencia.getDescripcion(), experiencia.getFecha_fin()
                 , experiencia.getFecha_inicio(),experiencia.getNombreEmpresa(), experiencia.toExperienciaEntity().getPersona());
-        this.experienciaService.save(exp);
+        experienciaService.save(exp);
 
         return new ResponseEntity(new Mensaje("Experiencia Agregada"), HttpStatus.OK);
     }
@@ -74,7 +81,8 @@ public class ExperienciaController
     }
     
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<?> delete(@PathVariable("id")int id){
+    public ResponseEntity<?> delete(@PathVariable("id")int id)
+    {
         if(!this.experienciaService.existsById(id))
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         this.experienciaService.delete((long) id);

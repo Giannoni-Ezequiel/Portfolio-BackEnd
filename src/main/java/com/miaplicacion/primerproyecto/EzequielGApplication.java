@@ -17,7 +17,7 @@ public class EzequielGApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EzequielGApplication.class, args);
 	}
-       @Bean
+       /*@Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
@@ -31,6 +31,22 @@ public class EzequielGApplication {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
-    }
+    }*/
+       @Bean
+       public CorsFilter corsFilter() {
+           UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+           CorsConfiguration config = new CorsConfiguration();
+           config.setAllowCredentials(true);
+           config.setAllowedOriginPatterns(Arrays.asList(
+                   "*"));
+           config.addAllowedHeader("");
+           config.addAllowedMethod("OPTIONS");
+           config.addAllowedMethod("GET");
+           config.addAllowedMethod("POST");
+           config.addAllowedMethod("PUT");
+           config.addAllowedMethod("DELETE");
+           source.registerCorsConfiguration("/**", config);
+           return new CorsFilter(source);
+       }
 }
 

@@ -28,18 +28,19 @@ public class Estudios {
     )
     @Column(name = "id")
     private Long id;
-    @Column(name = "descripcion")
-    private String descripcion;
-    @Column(name = "fecha_fin")
-    private Date fecha_fin;
-    @Column(name = "fecha_inicio")
-    private Date fecha_inicio;
-    @Column(name = "img")
-    private String img;
-    @Column(name = "nombre")
-    private String nombre;
     @Column(name = "titulo")
     private String titulo;
+    @Column(name = "nombre")
+    private String nombre;
+    @Column(name = "fecha_inicio")
+    private String fecha_inicio;
+    @Column(name = "fecha_fin")
+    private String fecha_fin;
+    @Column(name = "img")
+    private String img;
+    @Column(name = "descripcion")
+    private String descripcion;
+
     @ManyToOne(
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
@@ -47,8 +48,9 @@ public class Estudios {
     @JoinColumn(name = "persona_fk")
     private Persona persona;
 
-    public Estudios(String descripcion, Date fecha_fin, Date fecha_inicio, 
-            String img, String nombre, String titulo, Persona persona) {
+    public Estudios(String titulo,String nombre,
+                    String fecha_inicio,String fecha_fin,
+                    String img, String descripcion,  Persona persona) {
         this.descripcion = descripcion;
         this.fecha_fin = fecha_fin;
         this.fecha_inicio = fecha_inicio;
