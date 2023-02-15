@@ -71,12 +71,12 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     } */
-        @Override
-    public void configure(HttpSecurity httpSecurity) throws Exception{
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.cors();
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("**").permitAll()
                 .and().exceptionHandling().authenticationEntryPoint( jwtEntryPoint )
                 .and().sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
         httpSecurity.addFilterBefore( jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class );}

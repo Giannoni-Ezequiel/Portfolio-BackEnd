@@ -33,8 +33,8 @@ public class Experiencia
     private String cargo;
     @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "es_trabajo_actual")
-    private Boolean es_trabajo_actual;
+    /*@Column(name = "es_trabajo_actual")
+    private Boolean es_trabajo_actual;*/
     @Column(name = "fecha_fin")
     private Date fecha_fin;
     @Column(name = "fecha_inicio")
@@ -48,12 +48,11 @@ public class Experiencia
     @JoinColumn(name = "persona_fk")
     private Persona persona;
 
-    public Experiencia(String cargo, String descripcion, 
-            Boolean es_trabajo_actual, Date fecha_fin, Date fecha_inicio, 
+    public Experiencia(String cargo, String descripcion
+           , Date fecha_fin, Date fecha_inicio,
             String nombreEmpresa, Persona persona) {
         this.cargo = cargo;
         this.descripcion = descripcion;
-        this.es_trabajo_actual = es_trabajo_actual;
         this.fecha_fin = fecha_fin;
         this.fecha_inicio = fecha_inicio;
         this.nombreEmpresa = nombreEmpresa;
