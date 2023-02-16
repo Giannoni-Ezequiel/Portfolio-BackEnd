@@ -13,10 +13,10 @@ import lombok.*;
 @AllArgsConstructor
 public class EstudioDTO {
 
-    @JsonProperty("nombre")
-    private String nombre;
     @JsonProperty("titulo")
     private String titulo;
+    @JsonProperty("nombre")
+    private String nombre;
     @JsonProperty("fecha_inicio")
     private String fecha_inicio;
     @JsonProperty("fecha_fin")
