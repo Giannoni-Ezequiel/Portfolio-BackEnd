@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-slim
-COPY --from=build target/primerproyecto-0.0.1-SNAPSHOT.jar primerproyecto.jar
+FROM amazoncorretto:11
+COPY target/primerproyecto-0.0.1-SNAPSHOT.jar primerproyecto-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "primerproyecto.jar"]
+ENTRYPOINT ["java", "-jar", "primerproyecto-0.0.1-SNAPSHOT.jar"]
