@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class TokenFilter extends OncePerRequestFilter 
 {
-
     private final static Logger logger = LoggerFactory.getLogger(TokenFilter.class);
 
     @Autowired

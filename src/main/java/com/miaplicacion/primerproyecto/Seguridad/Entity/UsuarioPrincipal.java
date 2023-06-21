@@ -4,10 +4,17 @@ package com.miaplicacion.primerproyecto.Seguridad.Entity;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class UsuarioPrincipal implements UserDetails
 {
     private String nombre;
@@ -16,18 +23,7 @@ public class UsuarioPrincipal implements UserDetails
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UsuarioPrincipal(String nombre, String nombreUsuario, 
-                    String email, String password, 
-                    Collection<? extends GrantedAuthority> authorities) 
-    {
-        this.nombre = nombre;
-        this.nombreUsuario = nombreUsuario;
-        this.email = email;
-        this.password = password;
-        this.authorities = authorities;
-    }
-    
-    public static UsuarioPrincipal build(Usuario usuario)  
+    public static UsuarioPrincipal build(Usuario usuario)
     {
         List<GrantedAuthority> authorities = usuario.getRoles().stream().map
         (rol -> new SimpleGrantedAuthority

@@ -38,38 +38,40 @@ public class PersonaController {
         return "Chau mundo " + nombre;
             }
     */
-    
     @Autowired
     private IPersonaService persoServ;
     
-    
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/crear")
-    public void agregarPersona (@RequestBody Persona pers) {
+    public void agregarPersona(@RequestBody Persona pers)
+    {
         //listaPersonas.add(pers);
         persoServ.crearPersona(pers);
-       
-                }
+    }
     
     @GetMapping ("/ver")
     @ResponseBody
-    public List<Persona> verPersonas (){
+    public List<Persona> verPersonas ()
+    {
         //return listaPersonas;
         return persoServ.verPersonas();
     }
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
-    public void borrarPersona (@PathVariable Long id) {
+    public void borrarPersona(@PathVariable Long id)
+    {
         persoServ.borrarPersona(id);
     }
     
-    /*@GetMapping("/traer/perfil")
-    public Persona buscarPersona(){
-        return persoServ.buscarPersona((long)1);
-    }*/
+    @GetMapping("/traer/{id}")
+    public Persona buscarPersona(@PathVariable Long id)
+    {
+        return persoServ.buscarPersona(id);
+    }
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update")
-    public ResponseEntity<Persona> updatePersona(@RequestBody Persona persona){
+    public ResponseEntity<Persona> updatePersona(@RequestBody Persona persona)
+    {
         Persona  updatePersona = persoServ.updatePersona(persona);
         return new ResponseEntity<>(updatePersona, HttpStatus.OK);
     }

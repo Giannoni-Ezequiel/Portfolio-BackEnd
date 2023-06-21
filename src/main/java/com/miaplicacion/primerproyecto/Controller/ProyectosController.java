@@ -23,33 +23,39 @@ public class ProyectosController
 {
     private final ProyectosService proyectoService;
     @Autowired
-    public ProyectosController(ProyectosService proyectoService){
+    public ProyectosController(ProyectosService proyectoService)
+    {
         this.proyectoService = proyectoService;
     }
     
     @GetMapping("")
-    public List<Proyectos> listar(){
+    public List<Proyectos> listar()
+    {
         return this.proyectoService.listar();
     }
     
     @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void add(@RequestBody ProyectoDTO proyecto){
+    public void add(@RequestBody ProyectoDTO proyecto)
+    {
         this.proyectoService.add(proyecto);
     }
     
     @PutMapping(value = "id", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Proyectos editar(@RequestBody ProyectoDTO proyecto, @PathVariable("id")
-    int id){
+    public Proyectos edit(@RequestBody ProyectoDTO proyecto, @PathVariable("id")
+    int id)
+    {
         return this.proyectoService.edit(proyecto);
     }
     
     @DeleteMapping(path = {"/{id}"})
-    public Proyectos delete(@PathVariable("id")Long id){
+    public Proyectos delete(@PathVariable("id")Long id)
+    {
         return this.proyectoService.delete(id);
     }
     
     @GetMapping(path = {"/{id}"})
-    public Proyectos listadId(@PathVariable("id")Long id){
+    public Proyectos listadId(@PathVariable("id")Long id)
+    {
         return this.proyectoService.listadId(id);
     }
 }

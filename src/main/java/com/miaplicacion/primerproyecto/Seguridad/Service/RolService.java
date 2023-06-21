@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class RolService 
 {
-
     @Autowired
     RolRepository rolRepository;
 

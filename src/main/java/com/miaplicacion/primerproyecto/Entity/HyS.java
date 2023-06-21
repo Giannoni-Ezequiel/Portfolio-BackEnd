@@ -41,7 +41,8 @@ public class HyS
     @JoinColumn(name = "persona_fk")
     private Persona persona;
 
-    public HyS(String img, Double porcentaje, String skill, Persona persona) {
+    public HyS(String img, Double porcentaje, String skill, Persona persona)
+    {
         this.img = img;
         this.porcentaje = porcentaje;
         this.skill = skill;

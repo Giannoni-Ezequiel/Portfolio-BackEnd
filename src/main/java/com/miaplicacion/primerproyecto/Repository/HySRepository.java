@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HySRepository extends JpaRepository<HyS, Long>
 {
-    List<HyS> findAll();
+    /*List<HyS> findAll();
     HyS save(HyS hys);
-    void deleteHySById(Long id);
+    void deleteHySById(Long id);*/
     HyS findHySById(Long id);
 }

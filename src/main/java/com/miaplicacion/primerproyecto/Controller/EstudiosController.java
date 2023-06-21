@@ -2,13 +2,10 @@ package com.miaplicacion.primerproyecto.Controller;
 
 //import org.springframework.web.bind.annotation.CrossOrigin;
 import com.miaplicacion.primerproyecto.Entity.DTO.EstudioDTO;
-import com.miaplicacion.primerproyecto.Entity.DTO.ExperienciaDTO;
 import com.miaplicacion.primerproyecto.Entity.Estudios;
-import com.miaplicacion.primerproyecto.Entity.Experiencia;
 import com.miaplicacion.primerproyecto.Seguridad.Controller.Mensaje;
 import com.miaplicacion.primerproyecto.Service.EstudiosService;
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,7 +56,7 @@ public class EstudiosController
         return new ResponseEntity(new Mensaje("Estudio Agregada"), HttpStatus.OK);
     }
     @PutMapping(value = "id", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> editar(@RequestBody EstudioDTO estudio, @PathVariable("id")
+    public ResponseEntity<?> edit(@RequestBody EstudioDTO estudio, @PathVariable("id")
     long id)
     {
         if(!this.estudioService.existsById((int) id))
@@ -97,7 +94,8 @@ public class EstudiosController
     }
     
     @GetMapping(path = {"/{id}"})
-    public Estudios listadId(@PathVariable("id")Long id){
+    public Estudios listadId(@PathVariable("id")Long id)
+    {
         return this.estudioService.listadId(id);
     }
 }

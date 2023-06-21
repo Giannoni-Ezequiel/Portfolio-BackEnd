@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class UsuarioService 
 {
-
     @Autowired
     UsuarioRepository usuarioRepository;
 

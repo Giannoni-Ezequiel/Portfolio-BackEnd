@@ -1,6 +1,8 @@
 package com.miaplicacion.primerproyecto.Seguridad.Entity;
 
 import com.sun.istack.NotNull;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +10,11 @@ import java.util.Set;
 
 @Entity
 @Table(name="usuario")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 //@Data //genera Get Y Setters
 public class Usuario {
     @Id
@@ -29,10 +36,6 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
-
-    public Usuario() 
-    {
-    }
 
     public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, 
                     @NotNull String email, @NotNull String password) 

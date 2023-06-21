@@ -26,7 +26,8 @@ public class ExperienciaDTO {
     private String nombreEmpresa;
     
     
-    public Experiencia toExperienciaEntity(){
+    public Experiencia toExperienciaEntity()
+    {
         return new Experiencia(this.cargo, this.descripcion,
                 this.fecha_fin, this.fecha_inicio, this.nombreEmpresa,
                 null);

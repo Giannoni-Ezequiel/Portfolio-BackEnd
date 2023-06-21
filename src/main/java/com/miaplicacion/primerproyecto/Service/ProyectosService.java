@@ -13,27 +13,33 @@ public class ProyectosService
     private final ProyectosRepository proyectoRepository;
     
     @Autowired
-    public ProyectosService(ProyectosRepository proyectoRepository){
+    public ProyectosService(ProyectosRepository proyectoRepository)
+    {
         this.proyectoRepository = proyectoRepository;
     }
     
-    public List<Proyectos> listar() {
+    public List<Proyectos> listar()
+    {
         return this.proyectoRepository.findAll();
     }
     
-    public Proyectos listadId(Long id) {
+    public Proyectos listadId(Long id)
+    {
         return this.proyectoRepository.findProyectoById(id);
     }
     
-    public void add(ProyectoDTO proyecto){
+    public void add(ProyectoDTO proyecto)
+    {
         this.proyectoRepository.save(proyecto.toProyectoEntity());
     }
     
-    public Proyectos edit(ProyectoDTO proyecto){
+    public Proyectos edit(ProyectoDTO proyecto)
+    {
         return this.proyectoRepository.save(proyecto.toProyectoEntity());
     }
     
-    public Proyectos delete(Long id){
+    public Proyectos delete(Long id)
+    {
         this.proyectoRepository.deleteById(id);
         return null;
     }

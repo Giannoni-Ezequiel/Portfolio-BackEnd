@@ -25,33 +25,35 @@ public class ExperienciaController
     ExperienciaService experienciaService;
     
     @GetMapping("/list")
-    public ResponseEntity<List<Experiencia>> list(){
+    public ResponseEntity<List<Experiencia>> list()
+    {
         List<Experiencia> list = experienciaService.list();
-        return new ResponseEntity(list, HttpStatus.OK);
+            return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Experiencia> getById(@PathVariable("id") int id){
+    public ResponseEntity<Experiencia> getById(@PathVariable("id") int id)
+    {
         if(!experienciaService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         Experiencia experiencia = experienciaService.getOne(id).get();
-        return new ResponseEntity(experiencia, HttpStatus.OK);
+            return new ResponseEntity<>(experiencia, HttpStatus.OK);
     }
     
     @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody ExperienciaDTO experiencia){
         if(StringUtils.isBlank(experiencia.getNombreEmpresa()))
-        return new ResponseEntity(new Mensaje("El nombre es obligatorio"),
+            return new ResponseEntity<>(new Mensaje("El nombre es obligatorio"),
                 HttpStatus.BAD_REQUEST);
         if(experienciaService.existsBynombreEmpresa(experiencia.getNombreEmpresa()))
             return new ResponseEntity(new Mensaje("Esa experiencia existe"),
                     HttpStatus.BAD_REQUEST);
-        Experiencia exp = new Experiencia(experiencia.getCargo()
+                Experiencia exp = new Experiencia(experiencia.getCargo()
                 ,experiencia.getDescripcion(), experiencia.getFecha_fin()
-                , experiencia.getFecha_inicio(),experiencia.getNombreEmpresa(), experiencia.toExperienciaEntity().getPersona());
-        experienciaService.save(exp);
-
-        return new ResponseEntity(new Mensaje("Experiencia Agregada"), HttpStatus.OK);
+                , experiencia.getFecha_inicio(),experiencia.getNombreEmpresa()
+                , experiencia.toExperienciaEntity().getPersona());
+                experienciaService.save(exp);
+            return new ResponseEntity(new Mensaje("Experiencia Agregada"), HttpStatus.OK);
     }
     
     @PutMapping(value = "id", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -67,16 +69,15 @@ public class ExperienciaController
         if(StringUtils.isBlank(experiencia.getNombreEmpresa()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"),
                     HttpStatus.BAD_REQUEST);
-        Experiencia exp = this.experienciaService.getOne((int) id).get();
-        exp.setNombreEmpresa(experiencia.getNombreEmpresa());
-        exp.setCargo(experiencia.getCargo());
-        exp.setDescripcion(experiencia.getDescripcion());
-        exp.setFecha_fin(experiencia.getFecha_fin());
-        exp.setFecha_inicio(experiencia.getFecha_inicio());
-        exp.setPersona(experiencia.toExperienciaEntity().getPersona());
-
-        this.experienciaService.save(exp);
-        return new ResponseEntity(new Mensaje("Experiencia actualizada"),
+                Experiencia exp = this.experienciaService.getOne((int) id).get();
+                exp.setNombreEmpresa(experiencia.getNombreEmpresa());
+                exp.setCargo(experiencia.getCargo());
+                exp.setDescripcion(experiencia.getDescripcion());
+                exp.setFecha_fin(experiencia.getFecha_fin());
+                exp.setFecha_inicio(experiencia.getFecha_inicio());
+                exp.setPersona(experiencia.toExperienciaEntity().getPersona());
+                this.experienciaService.save(exp);
+            return new ResponseEntity(new Mensaje("Experiencia actualizada"),
                 HttpStatus.OK);
     }
     
@@ -85,9 +86,8 @@ public class ExperienciaController
     {
         if(!this.experienciaService.existsById(id))
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        this.experienciaService.delete((long) id);
-
-        return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
+                this.experienciaService.delete((long) id);
+            return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
 
 }
