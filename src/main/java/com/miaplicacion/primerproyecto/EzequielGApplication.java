@@ -15,7 +15,7 @@ public class EzequielGApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EzequielGApplication.class, args);
 	}
-    /*
+    
         @Bean
         public CorsFilter corsFilter()
         {
@@ -31,7 +31,7 @@ public class EzequielGApplication {
             UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
             urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
             return new CorsFilter(urlBasedCorsConfigurationSource);
-        }*/
+        }
       /* @Bean
        public CorsFilter corsFilter() {
            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
