@@ -31,7 +31,7 @@ public class EzequielGApplication {
             UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
             urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
             return new CorsFilter(urlBasedCorsConfigurationSource);
-        }
+        }*/
       /* @Bean
        public CorsFilter corsFilter() {
            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

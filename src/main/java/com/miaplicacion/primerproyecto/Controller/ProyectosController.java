@@ -10,8 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "https://ezequiel-giannoni.web.app/")
-@RequestMapping("proyectos")
+//@CrossOrigin(origins = "https://ezequiel-giannoni.web.app/")
+@RequestMapping("/proyectos")
 public class ProyectosController 
 {
     private final ProyectosService proyectoService;
