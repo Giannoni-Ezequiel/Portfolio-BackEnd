@@ -3,6 +3,7 @@ package com.miaplicacion.primerproyecto.Service;
 import com.miaplicacion.primerproyecto.Entity.DTO.EstudioDTO;
 import com.miaplicacion.primerproyecto.Entity.Estudios;
 import com.miaplicacion.primerproyecto.Entity.Experiencia;
+import com.miaplicacion.primerproyecto.Entity.Persona;
 import com.miaplicacion.primerproyecto.Repository.EstudiosRepository;
 import java.util.List;
 import java.util.Optional;
@@ -55,5 +56,10 @@ public class EstudiosService
     public boolean existsBynombre(String nombre)
     {
         return this.estudiosRepository.existsBynombre(nombre);
+    }
+
+    public Estudios editar(Estudios estudio)
+    {
+        return estudiosRepository.save(estudio);
     }
 }

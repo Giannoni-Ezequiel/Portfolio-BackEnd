@@ -15,9 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-//@CrossOrigin(origins = "https://proyectoangulareg.web.app/")
+//
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://ezequiel-giannoni.web.app/")
 @RequestMapping("/experiencia")
 public class ExperienciaController 
 {

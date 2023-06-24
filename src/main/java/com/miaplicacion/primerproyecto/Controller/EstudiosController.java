@@ -14,8 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@CrossOrigin(origins = "https://proyectoangulareg.web.app/")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://ezequiel-giannoni.web.app/")
+//@CrossOrigin(origins = "*")
 @RequestMapping("estudio")
 public class EstudiosController 
 {
@@ -54,6 +54,12 @@ public class EstudiosController
         this.estudioService.save(est);
 
         return new ResponseEntity(new Mensaje("Estudio Agregada"), HttpStatus.OK);
+    }
+    @PutMapping("/update")
+    public ResponseEntity<Estudios> editar(@RequestBody Estudios estudio)
+    {
+        Estudios  editar = estudioService.editar(estudio);
+        return new ResponseEntity<>(editar, HttpStatus.OK);
     }
     @PutMapping(value = "id", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> edit(@RequestBody EstudioDTO estudio, @PathVariable("id")

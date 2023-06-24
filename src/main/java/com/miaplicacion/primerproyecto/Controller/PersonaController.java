@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://ezequiel-giannoni.web.app")
+//@CrossOrigin(origins = "http://ezequiel-giannoni.web.app")
 @RestController
-@RequestMapping("/persona")
+@CrossOrigin(origins = "https://ezequiel-giannoni.web.app/")
+@RequestMapping("persona")
 public class PersonaController {
     
     /*List<Persona> listaPersonas = new ArrayList();
@@ -41,7 +42,7 @@ public class PersonaController {
     @Autowired
     private IPersonaService persoServ;
     
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/crear")
     public void agregarPersona(@RequestBody Persona pers)
     {
@@ -56,7 +57,7 @@ public class PersonaController {
         //return listaPersonas;
         return persoServ.verPersonas();
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public void borrarPersona(@PathVariable Long id)
     {
@@ -68,7 +69,7 @@ public class PersonaController {
     {
         return persoServ.buscarPersona(id);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Persona> updatePersona(@RequestBody Persona persona)
     {
