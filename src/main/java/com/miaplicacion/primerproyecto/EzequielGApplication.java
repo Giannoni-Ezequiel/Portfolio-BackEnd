@@ -22,20 +22,20 @@ public class EzequielGApplication {
 		SpringApplication.run(EzequielGApplication.class, args);
 	}
 	@Bean
-	public CorsConfigurationSource corsConfigurationSource()
+	public CorsFilter corsFilter()
 	{
-		final var configuration = new CorsConfiguration();
-
-		configuration.addAllowedOriginPattern("https://ezequiel-giannoni.web.app");
-
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-		configuration.setAllowedHeaders(Arrays.asList("*"));
-		configuration.setExposedHeaders(Arrays.asList("*"));
-
-		final var source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-
-		return source;
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowCredentials(true);
+		corsConfiguration.setAllowedOrigins(Arrays.asList("https://ezequiel-giannoni.web.app", "http://localhost:4200"));
+		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
+				"Access-Control-Request-Method", "Access-Control-Request-Headers"));
+		corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
+				"Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 	/*
 	@Bean
