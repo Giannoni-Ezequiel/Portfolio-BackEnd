@@ -1,12 +1,18 @@
 package com.miaplicacion.primerproyecto;
 
 import java.util.Arrays;
+
+import lombok.var;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 //import org.springframework.web.servlet.config.annotation.CorsRegistry;
 //import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
@@ -15,8 +21,34 @@ public class EzequielGApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EzequielGApplication.class, args);
 	}
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource()
+	{
+		final var configuration = new CorsConfiguration();
 
-        /*@Bean
+		configuration.addAllowedOriginPattern("https://ezequiel-giannoni.web.app");
+
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		configuration.setExposedHeaders(Arrays.asList("*"));
+
+		final var source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+
+		return source;
+	}
+	/*
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8080");
+			}
+		};
+	}
+
+	@Bean
         public CorsFilter corsFilter()
         {
            CorsConfiguration corsConfiguration = new CorsConfiguration();
