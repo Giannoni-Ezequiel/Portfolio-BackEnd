@@ -19,9 +19,9 @@ public class ExperienciaDTO {
     /*@JsonProperty("es_trabajo_actual")
     private Boolean es_trabajo_actual;*/
     @JsonProperty("fecha_fin")
-    private Date fecha_fin;
+    private String fecha_fin;
     @JsonProperty("fecha_inicio")
-    private Date fecha_inicio;
+    private String fecha_inicio;
     @JsonProperty("nombreEmpresa")
     private String nombreEmpresa;
     

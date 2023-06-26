@@ -36,9 +36,9 @@ public class Experiencia
     /*@Column(name = "es_trabajo_actual")
     private Boolean es_trabajo_actual;*/
     @Column(name = "fecha_fin")
-    private Date fecha_fin;
+    private String fecha_fin;
     @Column(name = "fecha_inicio")
-    private Date fecha_inicio;
+    private String fecha_inicio;
     @Column(name = "nombreEmpresa")
     private String nombreEmpresa;
     @ManyToOne(
@@ -49,7 +49,7 @@ public class Experiencia
     private Persona persona;
 
     public Experiencia(String cargo, String descripcion
-           , Date fecha_fin, Date fecha_inicio,
+           , String fecha_fin, String fecha_inicio,
             String nombreEmpresa, Persona persona) {
         this.cargo = cargo;
         this.descripcion = descripcion;
