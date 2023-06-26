@@ -61,26 +61,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
-    /*    http.cors().and().csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/**").permitAll()
-                .and()
-                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.cors();
-        httpSecurity.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("**").permitAll()
-                .and().exceptionHandling().authenticationEntryPoint( jwtEntryPoint )
-                .and().sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
-        httpSecurity.addFilterBefore( jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class );}
-*/
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity

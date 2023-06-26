@@ -1,6 +1,5 @@
 package com.miaplicacion.primerproyecto.Entity;
 
-import java.util.Date;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

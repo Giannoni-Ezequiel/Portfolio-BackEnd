@@ -21,24 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-//@CrossOrigin(origins = "http://ezequiel-giannoni.web.app")
 @RestController
 @CrossOrigin(origins = "https://ezequiel-giannoni.web.app")
 @RequestMapping("persona")
 public class PersonaController {
-    
-    /*List<Persona> listaPersonas = new ArrayList();
-    
-    @GetMapping ("/hola/{nombre}")
-    public String decirHola(@PathVariable String nombre){
-        return "Hola mundo" + nombre;
-    }
-    
-    @GetMapping ("/chau")
-    public String decirChau (@RequestParam String nombre) {
-        return "Chau mundo " + nombre;
-            }
-    */
+
     @Autowired
     private IPersonaService persoServ;
     
@@ -69,6 +56,7 @@ public class PersonaController {
     {
         return persoServ.buscarPersona(id);
     }
+
     //@PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Persona> updatePersona(@RequestBody Persona persona)

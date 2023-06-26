@@ -1,6 +1,5 @@
 package com.miaplicacion.primerproyecto.Controller;
 
-//import org.springframework.web.bind.annotation.CrossOrigin;
 import com.miaplicacion.primerproyecto.Entity.DTO.ProyectoDTO;
 import com.miaplicacion.primerproyecto.Entity.Proyectos;
 import com.miaplicacion.primerproyecto.Service.ProyectosService;

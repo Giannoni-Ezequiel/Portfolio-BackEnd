@@ -1,6 +1,6 @@
 package com.miaplicacion.primerproyecto.Controller;
 
-//import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.miaplicacion.primerproyecto.Entity.DTO.ExperienciaDTO;
 import com.miaplicacion.primerproyecto.Entity.Experiencia;
 import com.miaplicacion.primerproyecto.Seguridad.Controller.Mensaje;
@@ -15,9 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-//
+
 @RestController
-//@CrossOrigin(origins = "*")
 @CrossOrigin(origins = "https://ezequiel-giannoni.web.app")
 @RequestMapping("experiencia")
 public class ExperienciaController 

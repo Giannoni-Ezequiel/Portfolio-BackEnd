@@ -41,13 +41,13 @@ public class UsuarioPrincipal implements UserDetails
     }
 
     @Override
-    public String getPassword() 
+    public String getPassword()
     {
         return password;
     }
 
     @Override
-    public String getUsername() 
+    public String getUsername()
     {
        return nombreUsuario;
     }
@@ -76,20 +76,6 @@ public class UsuarioPrincipal implements UserDetails
         return true;
      }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
 }

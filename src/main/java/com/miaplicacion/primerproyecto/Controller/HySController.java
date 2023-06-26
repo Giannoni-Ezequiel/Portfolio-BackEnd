@@ -1,6 +1,5 @@
 package com.miaplicacion.primerproyecto.Controller;
 
-//import org.springframework.web.bind.annotation.CrossOrigin;
 import com.miaplicacion.primerproyecto.Entity.DTO.HySDTO;
 import com.miaplicacion.primerproyecto.Entity.HyS;
 import com.miaplicacion.primerproyecto.Service.HySService;
