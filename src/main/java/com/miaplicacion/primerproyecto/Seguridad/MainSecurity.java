@@ -70,7 +70,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-    } */
+    }
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.cors();
@@ -80,4 +80,16 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().authenticationEntryPoint( jwtEntryPoint )
                 .and().sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS );
         httpSecurity.addFilterBefore( jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class );}
+*/
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .cors().and().csrf().disable()
+                .authorizeRequests()
+                .antMatchers("**").permitAll()
+                .anyRequest().authenticated()
+                .and().exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        httpSecurity.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
 }
