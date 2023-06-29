@@ -18,7 +18,7 @@ public class EzequielGApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://ezequiel-giannoni.web.app").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("https://ezequiel-giannoni.web.app").allowedMethods("*").allowedHeaders("*");
 			}
 		};
 	}
