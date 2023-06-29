@@ -27,5 +27,7 @@ public class Rol
     @NotNull
     @Enumerated(EnumType.STRING)
     private RolNombre rolNombre;
-    
+
+    public Rol(RolNombre roleAdmin) {
+    }
 }
