@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/experiencia")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ExperienciaController 
 {
     @Autowired
@@ -31,11 +32,11 @@ public class ExperienciaController
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Experiencia> getById(@PathVariable("id") int id)
+    public ResponseEntity<Experiencia> getById(@PathVariable("id") Long id)
     {
-        if(!experienciaService.existsById(id))
+        if(!experienciaService.existsById(id.intValue())) // Assuming service still needs int, but ideally this should be Long
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        Experiencia experiencia = experienciaService.getOne(id).get();
+        Experiencia experiencia = experienciaService.getOne(id.intValue()).get(); // Assuming service still needs int
             return new ResponseEntity<>(experiencia, HttpStatus.OK);
     }
     
@@ -55,20 +56,19 @@ public class ExperienciaController
             return new ResponseEntity(new Mensaje("Experiencia Agregada"), HttpStatus.OK);
     }
     
-    @PutMapping(value = "id", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> editar(@RequestBody ExperienciaDTO experiencia, @PathVariable("id")
-    long id)
+    @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody ExperienciaDTO experiencia)
     {
-        if(!this.experienciaService.existsById((int) id))
+        if(!this.experienciaService.existsById(id.intValue())) // Assuming service needs int
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         if(this.experienciaService.existsBynombreEmpresa(experiencia.getNombreEmpresa()) &&
-        this.experienciaService.getByNombreEmpresa(experiencia.getNombreEmpresa()).get().getId() != id)
+        this.experienciaService.getByNombreEmpresa(experiencia.getNombreEmpresa()).get().getId() != id.intValue()) // Assuming service needs int
             return new ResponseEntity(new Mensaje("Esa experiencia ya existe"),
                     HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(experiencia.getNombreEmpresa()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"),
                     HttpStatus.BAD_REQUEST);
-                Experiencia exp = this.experienciaService.getOne((int) id).get();
+                Experiencia exp = this.experienciaService.getOne(id.intValue()).get(); // Assuming service needs int
                 exp.setNombreEmpresa(experiencia.getNombreEmpresa());
                 exp.setCargo(experiencia.getCargo());
                 exp.setDescripcion(experiencia.getDescripcion());
@@ -81,11 +81,11 @@ public class ExperienciaController
     }
     
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<?> delete(@PathVariable("id")int id)
+    public ResponseEntity<?> delete(@PathVariable("id") Long id)
     {
-        if(!this.experienciaService.existsById(id))
+        if(!this.experienciaService.existsById(id.intValue())) // Assuming service needs int
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-                this.experienciaService.delete((long) id);
+                this.experienciaService.delete(id);
             return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
 

@@ -2,14 +2,19 @@ package com.miaplicacion.primerproyecto.Controller;
 
 import com.miaplicacion.primerproyecto.Entity.DTO.ProyectoDTO;
 import com.miaplicacion.primerproyecto.Entity.Proyectos;
+import com.miaplicacion.primerproyecto.Seguridad.Controller.Mensaje;
 import com.miaplicacion.primerproyecto.Service.ProyectosService;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/proyectos")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProyectosController 
 {
     private final ProyectosService proyectoService;
@@ -20,33 +25,49 @@ public class ProyectosController
     }
     
     @GetMapping("")
-    public List<Proyectos> listar()
+    public ResponseEntity<List<Proyectos>> listar()
     {
-        return this.proyectoService.listar();
-    }
-    
-    @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void add(@RequestBody ProyectoDTO proyecto)
-    {
-        this.proyectoService.add(proyecto);
-    }
-    
-    @PutMapping(value = "id", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Proyectos edit(@RequestBody ProyectoDTO proyecto, @PathVariable("id")
-    int id)
-    {
-        return this.proyectoService.edit(proyecto);
-    }
-    
-    @DeleteMapping(path = {"/{id}"})
-    public Proyectos delete(@PathVariable("id")Long id)
-    {
-        return this.proyectoService.delete(id);
+        List<Proyectos> list = proyectoService.listar();
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
     
     @GetMapping(path = {"/{id}"})
-    public Proyectos listadId(@PathVariable("id")Long id)
+    public ResponseEntity<Proyectos> listadId(@PathVariable("id")Long id)
     {
-        return this.proyectoService.listadId(id);
+        if(!proyectoService.existsById(id)){
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        }
+        Proyectos proyecto = proyectoService.listadId(id);
+        return new ResponseEntity<>(proyecto, HttpStatus.OK);
+    }
+    
+    @PostMapping(value = "add")
+    public ResponseEntity<?> add(@RequestBody ProyectoDTO proyecto)
+    {
+        // if(StringUtils.isBlank(proyecto.getNombre())) // Uncomment this after adding getNombre() to ProyectoDTO
+        //     return new ResponseEntity<>(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        proyectoService.add(proyecto);
+        return new ResponseEntity<>(new Mensaje("Proyecto agregado"), HttpStatus.OK);
+    }
+    
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<?> edit(@PathVariable("id") Long id, @RequestBody ProyectoDTO proyecto)
+    {
+        if(!proyectoService.existsById(id))
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+        // if(StringUtils.isBlank(proyecto.getNombre())) // Uncomment this after adding getNombre() to ProyectoDTO
+        //     return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+            
+        proyectoService.edit(proyecto);
+        return new ResponseEntity<>(new Mensaje("Proyecto actualizado"), HttpStatus.OK);
+    }
+    
+    @DeleteMapping(path = {"/{id}"})
+    public ResponseEntity<?> delete(@PathVariable("id")Long id)
+    {
+        if(!proyectoService.existsById(id))
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
+        proyectoService.delete(id);
+        return new ResponseEntity<>(new Mensaje("Proyecto eliminado"), HttpStatus.OK);
     }
 }

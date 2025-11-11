@@ -6,6 +6,9 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.miaplicacion.primerproyecto.Seguridad.dto.UsuarioDTO;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -33,4 +36,11 @@ public class UsuarioService
     {
         usuarioRepository.save(usuario);
     }
+    
+    public List<UsuarioDTO> list() {
+    List<Usuario> usuarios = usuarioRepository.findAll();
+    return usuarios.stream()
+            .map(usuario -> new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getRoles()))
+            .collect(Collectors.toList());
+}
 }

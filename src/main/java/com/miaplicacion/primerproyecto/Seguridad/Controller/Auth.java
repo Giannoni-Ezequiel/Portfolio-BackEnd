@@ -89,4 +89,13 @@ public class Auth {
         Jwt jwtDto = new Jwt(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
+
+    @GetMapping("/roles/{nombreUsuario}")
+    public ResponseEntity<?> getRolesByNombreUsuario(@PathVariable String nombreUsuario) {
+        if (!usuarioService.existsByNombreUsuario(nombreUsuario)) {
+            return new ResponseEntity(new Mensaje("No existe el usuario"), HttpStatus.NOT_FOUND);
+        }
+        Usuario usuario = usuarioService.getByNombreUsuario(nombreUsuario).get();
+        return new ResponseEntity<>(usuario.getRoles(), HttpStatus.OK);
+    }
 }

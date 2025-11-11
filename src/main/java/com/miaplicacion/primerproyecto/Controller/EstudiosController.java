@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/estudio")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EstudiosController 
 {
     private final EstudiosService estudioService;
@@ -30,10 +31,10 @@ public class EstudiosController
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Estudios> getById(@PathVariable("id") int id){
-        if(!this.estudioService.existsById(id))
+    public ResponseEntity<Estudios> getById(@PathVariable("id") Long id){
+        if(!this.estudioService.existsById(id.intValue())) // Assuming service needs int
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        Estudios estudios = this.estudioService.getOne(id).get();
+        Estudios estudios = this.estudioService.getOne(id.intValue()).get(); // Assuming service needs int
         return new ResponseEntity(estudios, HttpStatus.OK);
     }
 
@@ -53,26 +54,19 @@ public class EstudiosController
 
         return new ResponseEntity(new Mensaje("Estudio Agregada"), HttpStatus.OK);
     }
-    @PutMapping("/update")
-    public ResponseEntity<Estudios> editar(@RequestBody Estudios estudio)
+    @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody EstudioDTO estudio)
     {
-        Estudios  editar = estudioService.editar(estudio);
-        return new ResponseEntity<>(editar, HttpStatus.OK);
-    }
-    @PutMapping(value = "id", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> edit(@RequestBody EstudioDTO estudio, @PathVariable("id")
-    long id)
-    {
-        if(!this.estudioService.existsById((int) id))
+        if(!this.estudioService.existsById(id.intValue())) // Assuming service needs int
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         if(this.estudioService.existsBynombre(estudio.getNombre()) &&
-                this.estudioService.getByNombre(estudio.getNombre()).get().getId() != id)
+                this.estudioService.getByNombre(estudio.getNombre()).get().getId() != id.intValue()) // Assuming service needs int
             return new ResponseEntity(new Mensaje("Esa experiencia ya existe"),
                     HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(estudio.getNombre()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"),
                     HttpStatus.BAD_REQUEST);
-        Estudios est = this.estudioService.getOne((int) id).get();
+        Estudios est = this.estudioService.getOne(id.intValue()).get(); // Assuming service needs int
         est.setTitulo(estudio.getTitulo());
         est.setNombre(estudio.getNombre());
         est.setFecha_inicio(estudio.getFecha_inicio());
@@ -87,19 +81,13 @@ public class EstudiosController
     }
     
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<?> delete(@PathVariable("id")int id)
+    public ResponseEntity<?> delete(@PathVariable("id") Long id)
     {
-        if(!this.estudioService.existsById(id))
+        if(!this.estudioService.existsById(id.intValue())) // Assuming service needs int
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        this.estudioService.delete((long) id);
+        this.estudioService.delete(id);
 
         return new ResponseEntity(new Mensaje("Estudio eliminada"), HttpStatus.OK);
 
-    }
-    
-    @GetMapping(path = {"/{id}"})
-    public Estudios listadId(@PathVariable("id")Long id)
-    {
-        return this.estudioService.listadId(id);
     }
 }

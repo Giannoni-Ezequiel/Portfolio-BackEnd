@@ -9,6 +9,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class HySDTO {
     
+     @JsonProperty("id")
+     private Long id;
      @JsonProperty("img")
      private String img;
      @JsonProperty("porcentaje")

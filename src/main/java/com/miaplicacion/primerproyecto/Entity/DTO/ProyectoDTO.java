@@ -10,6 +10,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class ProyectoDTO {
         
+    @JsonProperty("id")
+    private Long id;
     @JsonProperty("descripcion")
     private String descripcion;
     @JsonProperty("fecha")
