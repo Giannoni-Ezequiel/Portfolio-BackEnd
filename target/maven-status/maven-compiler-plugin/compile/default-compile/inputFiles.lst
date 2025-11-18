@@ -19,6 +19,7 @@ C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Service\ExperienciaService.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Repository\EstudiosRepository.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Seguridad\Entity\Usuario.java
+C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Seguridad\dto\RolDTO.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Seguridad\MainSecurity.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Controller\EstudiosController.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Seguridad\jwt\EntryPoint.java
@@ -28,6 +29,7 @@ C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Service\ProyectosService.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Repository\ProyectosRepository.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Seguridad\Enums\RolNombre.java
+C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Seguridad\dto\UsuarioDTO.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Controller\ProyectosController.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Entity\Proyectos.java
 C:\Users\ezequiel.giannoni\Documents\GitHub\Portfolio-BackEnd\src\main\java\com\miaplicacion\primerproyecto\Util\CrearRoles.java
